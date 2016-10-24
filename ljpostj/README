@@ -1,0 +1,31 @@
+ABOUT
+Ljpostj is a simplistic utility for bulk uploading LiveJournal posts using an XMLRPC API interface.
+
+
+
+
+INVOCATION
+java -jar target/ljpostj-jar-with-dependencies.jar -a post -u electrodyssey -p apassword -d /home/ljposts -b -s friends
+
+-a post - required
+-u user
+-p password
+-d specifies a directory with a files. File format is described below.
+if you don't want to show those posts in a friends feeds, use -b option (backdated)
+
+Every uploaded file is moved to a new directory 'processed' which is created under directory where LJ posts are kept.
+If upload is not successful, file will not be moved.
+
+
+FILE FORMAT
+1. Files for upload must be UTF-8 encoded and have .txt extension.
+2. First string of a file must be a date in a format:
+YYYY MM DD HH MI
+3. Second string could represent a subject. If second string starts with SUBJECT:, the remaining part of the string is treated as a post's subject.
+   If second string doesn't starts with SUBJECT:, subject will be empty.
+4. All subsequent strings will be uploaded as a post body
+
+
+LOGGING
+Program uses logback for logging, by default log file is created under /tmp/. You could define a custom logback file with: java -Dlogback.configurationFile=/path/to/config.xml
+

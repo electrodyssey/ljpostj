@@ -1,0 +1,1 @@
+java -jar target/ljpostj-jar-with-dependencies.jar -a post -u electrodyssey -p apassword -d /home/ljposts -b -s friends
